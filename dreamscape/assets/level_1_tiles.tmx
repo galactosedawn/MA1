@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="400" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="7">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="400" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="35">
  <editorsettings>
   <export target="level_1_tiles.tmj" format="json"/>
  </editorsettings>
@@ -199,6 +199,54 @@
    <point/>
   </object>
   <object id="5" name="end" x="12734.1" y="268.364">
+   <point/>
+  </object>
+  <object id="10" name="bee1-1" x="3464" y="152">
+   <point/>
+  </object>
+  <object id="15" name="bee1-2" x="10542" y="164">
+   <point/>
+  </object>
+  <object id="11" name="slug1-1" x="5646" y="436">
+   <point/>
+  </object>
+  <object id="13" name="slug1-2" x="8812" y="562">
+   <point/>
+  </object>
+  <object id="14" name="slug1-3" x="9462" y="334">
+   <point/>
+  </object>
+  <object id="17" name="item1-1" x="486" y="420">
+   <point/>
+  </object>
+  <object id="18" name="item1-2" x="1100" y="456">
+   <point/>
+  </object>
+  <object id="19" name="item1-3" x="1444" y="390">
+   <point/>
+  </object>
+  <object id="20" name="item1-4" x="2942" y="300">
+   <point/>
+  </object>
+  <object id="21" name="item1-5" x="6514" y="550">
+   <point/>
+  </object>
+  <object id="22" name="item1-6" x="6186" y="232">
+   <point/>
+  </object>
+  <object id="24" name="item1-7" x="9706" y="334">
+   <point/>
+  </object>
+  <object id="26" name="item1-8" x="7322" y="562">
+   <point/>
+  </object>
+  <object id="27" name="item1-9" x="11204" y="304">
+   <point/>
+  </object>
+  <object id="28" name="item1-10" x="10852" y="428">
+   <point/>
+  </object>
+  <object id="29" name="item1-11" x="9082" y="548">
    <point/>
   </object>
  </objectgroup>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="400" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="6">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="400" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="32">
  <editorsettings>
   <export target="level_3_tiles.tmj" format="json"/>
  </editorsettings>
@@ -24,6 +24,75 @@
    <point/>
   </object>
   <object id="5" name="end" x="12572" y="514">
+   <point/>
+  </object>
+  <object id="6" name="item3-1" x="1726" y="466">
+   <point/>
+  </object>
+  <object id="7" name="item3-2" x="900" y="276">
+   <point/>
+  </object>
+  <object id="8" name="item3-3" x="92" y="498">
+   <point/>
+  </object>
+  <object id="9" name="item3-4" x="3034" y="278">
+   <point/>
+  </object>
+  <object id="10" name="item3-5" x="5682" y="408">
+   <point/>
+  </object>
+  <object id="11" name="item3-6" x="4186" y="214">
+   <point/>
+  </object>
+  <object id="12" name="item3-7" x="6634" y="562">
+   <point/>
+  </object>
+  <object id="13" name="item3-8" x="7598" y="434">
+   <point/>
+  </object>
+  <object id="14" name="item3-9" x="8868" y="338">
+   <point/>
+  </object>
+  <object id="15" name="item3-10" x="9746" y="464">
+   <point/>
+  </object>
+  <object id="16" name="item3-11" x="10022" y="178">
+   <point/>
+  </object>
+  <object id="17" name="item3-12" x="3672" y="90">
+   <point/>
+  </object>
+  <object id="19" name="item3-13" x="4930" y="304">
+   <point/>
+  </object>
+  <object id="21" name="item3-14" x="11168" y="124">
+   <point/>
+  </object>
+  <object id="22" name="item3-15" x="10538" y="88">
+   <point/>
+  </object>
+  <object id="25" name="slug3-1" x="1220" y="474">
+   <point/>
+  </object>
+  <object id="26" name="slug3-2" x="3818" y="372">
+   <point/>
+  </object>
+  <object id="27" name="slug3-3" x="6354" y="570">
+   <point/>
+  </object>
+  <object id="31" name="slug3-4" x="11170" y="336">
+   <point/>
+  </object>
+  <object id="23" name="bee3-1" x="648" y="128">
+   <point/>
+  </object>
+  <object id="28" name="bee3-2" x="6610" y="264">
+   <point/>
+  </object>
+  <object id="29" name="bee3-3" x="9198" y="154">
+   <point/>
+  </object>
+  <object id="30" name="bee3-4" x="11798" y="118">
    <point/>
   </object>
  </objectgroup>

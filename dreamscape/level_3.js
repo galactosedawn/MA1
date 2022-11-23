@@ -50,7 +50,59 @@ class level_3 extends Phaser.Scene {
 
     // Add main player here with physics.add.sprite
     var startPoint = map.findObject("object3Layer",(obj) => obj.name === "start");
+    var bee3_1 = map.findObject("object3Layer",(obj) => obj.name ==="bee3-1")
+    var bee3_2 = map.findObject("object3Layer",(obj) => obj.name ==="bee3-2")
+    var bee3_3 = map.findObject("object3Layer",(obj) => obj.name ==="bee3-3")
+    var bee3_4 = map.findObject("object3Layer",(obj) => obj.name ==="bee3-4")
+
+    var slug3_1 = map.findObject("object3Layer",(obj) => obj.name ==="slug3-1")
+    var slug3_2 = map.findObject("object3Layer",(obj) => obj.name ==="slug3-2")
+    var slug3_3 = map.findObject("object3Layer",(obj) => obj.name ==="slug3-3")
+    var slug3_4 = map.findObject("object3Layer",(obj) => obj.name ==="slug3-4")
+
+    var flower3_1 = map.findObject("object3Layer",(obj) => obj.name ==="item3-1")
+    var flower3_2 = map.findObject("object3Layer",(obj) => obj.name ==="item3-2")
+    var flower3_3 = map.findObject("object3Layer",(obj) => obj.name ==="item3-3")
+    var flower3_4 = map.findObject("object3Layer",(obj) => obj.name ==="item3-4")
+    var flower3_5 = map.findObject("object3Layer",(obj) => obj.name ==="item3-5")
+    var flower3_6 = map.findObject("object3Layer",(obj) => obj.name ==="item3-6")
+    var flower3_7 = map.findObject("object3Layer",(obj) => obj.name ==="item3-7")
+    var flower3_8 = map.findObject("object3Layer",(obj) => obj.name ==="item3-8")
+    var flower3_9 = map.findObject("object3Layer",(obj) => obj.name ==="item3-9")
+    var flower3_10 = map.findObject("object3Layer",(obj) => obj.name ==="item3-10")
+    var flower3_11 = map.findObject("object3Layer",(obj) => obj.name ==="item3-11")
+    var flower3_12 = map.findObject("object3Layer",(obj) => obj.name ==="item3-12")
+    var flower3_13 = map.findObject("object3Layer",(obj) => obj.name ==="item3-13")
+    var flower3_14 = map.findObject("object3Layer",(obj) => obj.name ==="item3-14")
+    var flower3_15 = map.findObject("object3Layer",(obj) => obj.name ==="item3-15")
+
     this.player = this.physics.add.sprite(startPoint.x,startPoint.y,"mc");
+    this.enemyPoint=this.physics.add.sprite(bee3_1.x, bee3_1.y,'bee').play('bee-move')
+    this.enemyPoint=this.physics.add.sprite(bee3_2.x, bee3_2.y,'bee').play('bee-move')
+    this.enemyPoint=this.physics.add.sprite(bee3_3.x, bee3_3.y,'bee').play('bee-move')
+    this.enemyPoint=this.physics.add.sprite(bee3_4.x, bee3_4.y,'bee').play('bee-move')
+
+    this.enemyPoint=this.physics.add.sprite(slug3_1.x, slug3_1.y,'slug').play('slug-move')
+    this.enemyPoint=this.physics.add.sprite(slug3_2.x, slug3_2.y,'slug').play('slug-move')
+    this.enemyPoint=this.physics.add.sprite(slug3_3.x, slug3_3.y,'slug').play('slug-move')
+    this.enemyPoint=this.physics.add.sprite(slug3_4.x, slug3_4.y,'slug').play('slug-move')
+
+    this.itemPoint=this.physics.add.sprite(flower3_1.x, flower3_1.y,'item3')
+    this.itemPoint=this.physics.add.sprite(flower3_2.x, flower3_2.y,'item3')
+    this.itemPoint=this.physics.add.sprite(flower3_3.x, flower3_3.y,'item3')
+    this.itemPoint=this.physics.add.sprite(flower3_4.x, flower3_4.y,'item3')
+    this.itemPoint=this.physics.add.sprite(flower3_5.x, flower3_5.y,'item3')
+    this.itemPoint=this.physics.add.sprite(flower3_6.x, flower3_6.y,'item3')
+    this.itemPoint=this.physics.add.sprite(flower3_7.x, flower3_7.y,'item3')
+    this.itemPoint=this.physics.add.sprite(flower3_8.x, flower3_8.y,'item3')
+    this.itemPoint=this.physics.add.sprite(flower3_9.x, flower3_9.y,'item3')
+    this.itemPoint=this.physics.add.sprite(flower3_10.x, flower3_10.y,'item3')
+    this.itemPoint=this.physics.add.sprite(flower3_11.x, flower3_11.y,'item3')
+    this.itemPoint=this.physics.add.sprite(flower3_12.x, flower3_12.y,'item3')
+    this.itemPoint=this.physics.add.sprite(flower3_13.x, flower3_13.y,'item3')
+    this.itemPoint=this.physics.add.sprite(flower3_14.x, flower3_14.y,'item3')
+    this.itemPoint=this.physics.add.sprite(flower3_15.x, flower3_15.y,'item3')
+
     this.player.setScale(2);
     this.player.setCollideWorldBounds(true);
     window.player = this.player;
@@ -98,6 +150,14 @@ class level_3 extends Phaser.Scene {
   } /////////////////// end of create //////////////////////////////
 
   update(){
+    if(this.player.y>604)
+    {
+      this.gameOver3()
+    }
+    if(this.player.y<35)
+    {
+      this.gameOver3()
+    }
     if (this.cursors.left.isDown)
     {
         console.log("left")
@@ -142,5 +202,7 @@ class level_3 extends Phaser.Scene {
     //     this.player.anims.play('jump',true);
     // }
 } /////////////////// end of update //////////////////////////////
-
+gameOver3(){
+  this.scene.start("gameOver3")
+}
 } //////////// end of class world ////////////////////////

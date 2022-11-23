@@ -7,8 +7,8 @@
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 100},
-            debug: false
+            //gravity: { y: 100},
+            debug: true
         }
     },
     // scale: {
@@ -17,7 +17,7 @@
     // },
     backgroundColor: '#000000',
     pixelArt: true,
-    scene: [main, level_1,level_2,level_3, preloadScene]
+    scene: [preload,level_1,level_2,level_3,instruction,gameOver,gameOver2,gameOver3,goodEnding]
 };
 
 var game = new Phaser.Game(config);

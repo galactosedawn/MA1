@@ -18,6 +18,8 @@ class level_1 extends Phaser.Scene {
     this.load.image("tileset2img", "assets/tileset2.png")
     //this.load.image("building", "assets/Buildings32x32.png");
     //this.load.image("street", "assets/Street32x32.png");
+    this.music = this.sound.add('hightone').setVolume(0.3)
+    this.music = this.sound.add('lowtone').setVolume(0.3)
   }
 
   create() {
@@ -54,22 +56,58 @@ class level_1 extends Phaser.Scene {
 
     // Add main player here with physics.add.sprite
     var startPoint = map.findObject("objectLayer",(obj) => obj.name === "start")
+    var bee1_1 = map.findObject("objectLayer",(obj) => obj.name ==="bee1-1")
+    var bee1_2 = map.findObject("objectLayer",(obj) => obj.name ==="bee1-2")
+
+    var slug1_1 = map.findObject("objectLayer",(obj) => obj.name ==="slug1-1")
+    var slug1_2 = map.findObject("objectLayer",(obj) => obj.name ==="slug1-2")
+    var slug1_3 = map.findObject("objectLayer",(obj) => obj.name ==="slug1-3")
+
+    var flower1_1 = map.findObject("objectLayer",(obj) => obj.name ==="item1-1")
+    var flower1_2 = map.findObject("objectLayer",(obj) => obj.name ==="item1-2")
+    var flower1_3 = map.findObject("objectLayer",(obj) => obj.name ==="item1-3")
+    var flower1_4 = map.findObject("objectLayer",(obj) => obj.name ==="item1-4")
+    var flower1_5 = map.findObject("objectLayer",(obj) => obj.name ==="item1-5")
+    var flower1_6 = map.findObject("objectLayer",(obj) => obj.name ==="item1-6")
+    var flower1_7 = map.findObject("objectLayer",(obj) => obj.name ==="item1-7")
+    var flower1_8 = map.findObject("objectLayer",(obj) => obj.name ==="item1-8")
+    var flower1_9 = map.findObject("objectLayer",(obj) => obj.name ==="item1-9")
+    var flower1_10 = map.findObject("objectLayer",(obj) => obj.name ==="item1-10")
+    var flower1_11 = map.findObject("objectLayer",(obj) => obj.name ==="item1-11")
+
     this.player = this.physics.add.sprite(startPoint.x,startPoint.y,"mc")
     this.player.setScale(2)
+    
     this.player.setCollideWorldBounds(true);
     window.player = this.player;
     
     this.physics.world.bounds.width =this.platformLayer.width;
     this.physics.world.bounds.height =this.platformLayer.height;
-  
-    
+   
+    this.enemyPoint1=this.physics.add.sprite(bee1_1.x, bee1_1.y,'bee').play('bee-move')
+    this.enemyPoint2=this.physics.add.sprite(bee1_2.x, bee1_2.y,'bee').play('bee-move')
+    this.enemyPoint3=this.physics.add.sprite(slug1_1.x, slug1_1.y,'slug').play('slug-move')
+    this.enemyPoint4=this.physics.add.sprite(slug1_2.x, slug1_2.y,'slug').play('slug-move')
+    this.enemyPoint5=this.physics.add.sprite(slug1_3.x, slug1_3.y,'slug').play('slug-move')
+
+    this.itemPoint1=this.physics.add.sprite(flower1_1.x, flower1_1.y,'item1')
+    this.itemPoint2=this.physics.add.sprite(flower1_2.x, flower1_2.y,'item1')
+    this.itemPoint3=this.physics.add.sprite(flower1_3.x, flower1_3.y,'item1')
+    this.itemPoint4=this.physics.add.sprite(flower1_4.x, flower1_4.y,'item1')
+    this.itemPoint5=this.physics.add.sprite(flower1_5.x, flower1_5.y,'item1')
+    this.itemPoint6=this.physics.add.sprite(flower1_6.x, flower1_6.y,'item1')
+    this.itemPoint7=this.physics.add.sprite(flower1_7.x, flower1_7.y,'item1')
+    this.itemPoint8=this.physics.add.sprite(flower1_8.x, flower1_8.y,'item1')
+    this.itemPoint9=this.physics.add.sprite(flower1_9.x, flower1_9.y,'item1')
+    this.itemPoint10=this.physics.add.sprite(flower1_10.x, flower1_10.y,'item1')
+    this.itemPoint11=this.physics.add.sprite(flower1_11.x, flower1_11.y,'item1')
 
     // Add time event / movement here
     this.timedEvent = this.time.addEvent({
       delay: 1000,
-      callback: this.delayOneSec,
+      callback: this.moving_sides,
       callbackScope: this,
-      loop: false
+      loop: false,
       
     })
     // get the tileIndex number in json, +1
@@ -80,6 +118,24 @@ class level_1 extends Phaser.Scene {
     // What will collider witg what layers
     //this.physics.add.collider(mapLayer, this.player);
     this.physics.add.collider(this.platformLayer,this.player)
+
+    this.physics.add.overlap(this.player,this.enemyPoint1,this.hit_enemy,null,this);
+    this.physics.add.overlap(this.player,this.enemyPoint2,this.hit_enemy,null,this);
+    this.physics.add.overlap(this.player,this.enemyPoint3,this.hit_enemy,null,this);
+    this.physics.add.overlap(this.player,this.enemyPoint4,this.hit_enemy,null,this);
+    this.physics.add.overlap(this.player,this.enemyPoint5,this.hit_enemy,null,this);
+
+    this.physics.add.overlap(this.player,this.itemPoint1,this.collect_flowers,null,this);
+    this.physics.add.overlap(this.player,this.itemPoint2,this.collect_flowers,null,this);
+    this.physics.add.overlap(this.player,this.itemPoint3,this.collect_flowers,null,this);
+    this.physics.add.overlap(this.player,this.itemPoint4,this.collect_flowers,null,this);
+    this.physics.add.overlap(this.player,this.itemPoint5,this.collect_flowers,null,this);
+    this.physics.add.overlap(this.player,this.itemPoint6,this.collect_flowers,null,this);
+    this.physics.add.overlap(this.player,this.itemPoint7,this.collect_flowers,null,this);
+    this.physics.add.overlap(this.player,this.itemPoint8,this.collect_flowers,null,this);
+    this.physics.add.overlap(this.player,this.itemPoint9,this.collect_flowers,null,this);
+    this.physics.add.overlap(this.player,this.itemPoint10,this.collect_flowers,null,this);
+    this.physics.add.overlap(this.player,this.itemPoint11,this.collect_flowers,null,this);
     this.platformLayer.setCollisionByExclusion(-1,true)
     // create the arrow keys
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -91,8 +147,8 @@ class level_1 extends Phaser.Scene {
     this.cameras.main.setBounds(0,0, map.widthInPixels, map.heightInPixels);
 
     this.physics.add.collider(this.player,this.platformLayer)
-
-    
+    // this.physics.add.collider(this.platformLayer,this.enemyPoint)
+    // this.physics.add.collider(this.platformLayer,this.itemPoint)
         
     // // Show colliding tiles as different colours
 
@@ -109,7 +165,14 @@ class level_1 extends Phaser.Scene {
   } /////////////////// end of create //////////////////////////////
 
   update(){
-  
+    if(this.player.y>604)
+    {
+      this.gameOver()
+    }
+    if(this.player.y<35)
+    {
+      this.gameOver()
+    }
     if(this.player.x>12734.10)
     {
       console.log("level_2_function");
@@ -159,8 +222,43 @@ class level_1 extends Phaser.Scene {
     //     this.player.anims.play('jump',true);
     // }
 } /////////////////// end of update //////////////////////////////
+
+moving_sides(){
+  console.log("moving-sides")
+  this.tweens.timeline({
+    targets: this.bee1_1,
+    loop:-1,
+    duration: 5000,
+    tweens:[
+      {
+        x:100,
+        ease:"Sine.easeInOut",
+        duration: 2000,
+        yoyo:true,
+      },
+      {
+        x:100,
+        ease:"Sine.easeOut",
+        offset:0,
+      }
+    ],
+  });
+}
+hit_enemy(player,enemyPoint1,enemyPoint2,enemyPoint3,enemyPoint4,enemyPoint5){
+  console.log("hit")
+  this.cameras.main.shake(500);
+  this.music = this.sound.add('lowtone').setVolume(0.3)
+  this.scene.start("gameOver")
+}
+collect_flowers(player,itemPoint1,itemPoint2,itemPoint3,itemPoint4,itemPoint5,itemPoint6,itemPoint7,itemPoint8,itemPoint9,itemPoint10,itemPoint11){
+  console.log("collect")
+  itemPoint1.disableBody(true,true);
+}
 level_2(){
   console.log("next_scene")
   this.scene.start("level_2")
+}
+gameOver(){
+  this.scene.start("gameOver")
 }
 } //////////// end of class world ////////////////////////

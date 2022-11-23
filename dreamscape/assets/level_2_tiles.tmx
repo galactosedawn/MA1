@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="400" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="4">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="400" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="24">
  <editorsettings>
   <export target="level_2_tiles.tmj" format="json"/>
  </editorsettings>
@@ -24,6 +24,57 @@
    <point/>
   </object>
   <object id="3" name="end" x="12702.7" y="589.333">
+   <point/>
+  </object>
+  <object id="4" name="item2-1" x="1333.33" y="469.333">
+   <point/>
+  </object>
+  <object id="6" name="item2-2" x="3614.67" y="116">
+   <point/>
+  </object>
+  <object id="7" name="item2-3" x="4828" y="306.667">
+   <point/>
+  </object>
+  <object id="8" name="item2-4" x="5390.67" y="497.333">
+   <point/>
+  </object>
+  <object id="9" name="item2-5" x="7182.67" y="562.667">
+   <point/>
+  </object>
+  <object id="10" name="item2-6" x="8417.33" y="148">
+   <point/>
+  </object>
+  <object id="11" name="item2-7" x="10288" y="528">
+   <point/>
+  </object>
+  <object id="12" name="item2-8" x="11268" y="570.667">
+   <point/>
+  </object>
+  <object id="13" name="item2-9" x="11681.3" y="88">
+   <point/>
+  </object>
+  <object id="14" name="item2-10" x="8460" y="602.667">
+   <point/>
+  </object>
+  <object id="15" name="item2-11" x="12205.3" y="564">
+   <point/>
+  </object>
+  <object id="16" name="slug2-1" x="5106.67" y="568">
+   <point/>
+  </object>
+  <object id="17" name="slug2-2" x="7768" y="497.333">
+   <point/>
+  </object>
+  <object id="18" name="slug2-3" x="10209.3" y="212">
+   <point/>
+  </object>
+  <object id="20" name="bee2-1" x="5938.67" y="210.667">
+   <point/>
+  </object>
+  <object id="21" name="bee2-2" x="7028" y="168">
+   <point/>
+  </object>
+  <object id="23" name="bee2-3" x="4280" y="169.333">
    <point/>
   </object>
  </objectgroup>
