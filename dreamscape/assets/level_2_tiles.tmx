@@ -59,22 +59,22 @@
   <object id="15" name="item2-11" x="12205.3" y="564">
    <point/>
   </object>
-  <object id="16" name="slug2-1" x="5106.67" y="568">
+  <object id="16" name="slug2-1" x="5294" y="570">
    <point/>
   </object>
-  <object id="17" name="slug2-2" x="7768" y="497.333">
+  <object id="17" name="slug2-2" x="7977" y="496">
    <point/>
   </object>
-  <object id="18" name="slug2-3" x="10209.3" y="212">
+  <object id="18" name="slug2-3" x="10388" y="212">
    <point/>
   </object>
-  <object id="20" name="bee2-1" x="5938.67" y="210.667">
+  <object id="20" name="bee2-1" x="5938" y="210">
    <point/>
   </object>
-  <object id="21" name="bee2-2" x="7028" y="168">
+  <object id="21" name="bee2-2" x="7625" y="170">
    <point/>
   </object>
-  <object id="23" name="bee2-3" x="4280" y="169.333">
+  <object id="23" name="bee2-3" x="4576" y="172">
    <point/>
   </object>
  </objectgroup>

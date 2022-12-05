@@ -29,7 +29,10 @@ class level_3 extends Phaser.Scene {
     // 2nd parameter is key in Preload
     //let buildingTiles = map.addTilesetImage("Buildings32x32", "building");
     //let streetTiles = map.addTilesetImage("Street32x32", "street");
-    
+
+    this.Hit_snd=this.sound.add("lowtone")
+    this.Collect_snd=this.sound.add("hightone")
+    this.flowernum=this.add.text(50,50,window.flower,{font:'20px Courier',fill:'#ffffff'}).setScrollFactor(0);
     let deco3Tiles = map.addTilesetImage("tileset6","tileset6img");
     let platform3Tiles = map.addTilesetImage("tileset4","tileset4img");
 
@@ -77,32 +80,34 @@ class level_3 extends Phaser.Scene {
     var flower3_15 = map.findObject("object3Layer",(obj) => obj.name ==="item3-15")
 
     this.player = this.physics.add.sprite(startPoint.x,startPoint.y,"mc");
-    this.enemyPoint=this.physics.add.sprite(bee3_1.x, bee3_1.y,'bee').play('bee-move')
-    this.enemyPoint=this.physics.add.sprite(bee3_2.x, bee3_2.y,'bee').play('bee-move')
-    this.enemyPoint=this.physics.add.sprite(bee3_3.x, bee3_3.y,'bee').play('bee-move')
-    this.enemyPoint=this.physics.add.sprite(bee3_4.x, bee3_4.y,'bee').play('bee-move')
+    this.enemyPoint12=this.physics.add.sprite(bee3_1.x, bee3_1.y,'bee').play('bee-move')
+    this.enemyPoint13=this.physics.add.sprite(bee3_2.x, bee3_2.y,'bee').play('bee-move')
+    this.enemyPoint14=this.physics.add.sprite(bee3_3.x, bee3_3.y,'bee').play('bee-move')
+    this.enemyPoint15=this.physics.add.sprite(bee3_4.x, bee3_4.y,'bee').play('bee-move')
 
-    this.enemyPoint=this.physics.add.sprite(slug3_1.x, slug3_1.y,'slug').play('slug-move')
-    this.enemyPoint=this.physics.add.sprite(slug3_2.x, slug3_2.y,'slug').play('slug-move')
-    this.enemyPoint=this.physics.add.sprite(slug3_3.x, slug3_3.y,'slug').play('slug-move')
-    this.enemyPoint=this.physics.add.sprite(slug3_4.x, slug3_4.y,'slug').play('slug-move')
+    this.enemyPoint16=this.physics.add.sprite(slug3_1.x, slug3_1.y,'slug').play('slug-move')
+    this.enemyPoint17=this.physics.add.sprite(slug3_2.x, slug3_2.y,'slug').play('slug-move')
+    this.enemyPoint18=this.physics.add.sprite(slug3_3.x, slug3_3.y,'slug').play('slug-move')
+    this.enemyPoint19=this.physics.add.sprite(slug3_4.x, slug3_4.y,'slug').play('slug-move')
 
-    this.itemPoint=this.physics.add.sprite(flower3_1.x, flower3_1.y,'item3')
-    this.itemPoint=this.physics.add.sprite(flower3_2.x, flower3_2.y,'item3')
-    this.itemPoint=this.physics.add.sprite(flower3_3.x, flower3_3.y,'item3')
-    this.itemPoint=this.physics.add.sprite(flower3_4.x, flower3_4.y,'item3')
-    this.itemPoint=this.physics.add.sprite(flower3_5.x, flower3_5.y,'item3')
-    this.itemPoint=this.physics.add.sprite(flower3_6.x, flower3_6.y,'item3')
-    this.itemPoint=this.physics.add.sprite(flower3_7.x, flower3_7.y,'item3')
-    this.itemPoint=this.physics.add.sprite(flower3_8.x, flower3_8.y,'item3')
-    this.itemPoint=this.physics.add.sprite(flower3_9.x, flower3_9.y,'item3')
-    this.itemPoint=this.physics.add.sprite(flower3_10.x, flower3_10.y,'item3')
-    this.itemPoint=this.physics.add.sprite(flower3_11.x, flower3_11.y,'item3')
-    this.itemPoint=this.physics.add.sprite(flower3_12.x, flower3_12.y,'item3')
-    this.itemPoint=this.physics.add.sprite(flower3_13.x, flower3_13.y,'item3')
-    this.itemPoint=this.physics.add.sprite(flower3_14.x, flower3_14.y,'item3')
-    this.itemPoint=this.physics.add.sprite(flower3_15.x, flower3_15.y,'item3')
+    this.itemPoint23=this.physics.add.sprite(flower3_1.x, flower3_1.y,'item3')
+    this.itemPoint24=this.physics.add.sprite(flower3_2.x, flower3_2.y,'item3')
+    this.itemPoint25=this.physics.add.sprite(flower3_3.x, flower3_3.y,'item3')
+    this.itemPoint26=this.physics.add.sprite(flower3_4.x, flower3_4.y,'item3')
+    this.itemPoint27=this.physics.add.sprite(flower3_5.x, flower3_5.y,'item3')
+    this.itemPoint28=this.physics.add.sprite(flower3_6.x, flower3_6.y,'item3')
+    this.itemPoint29=this.physics.add.sprite(flower3_7.x, flower3_7.y,'item3')
+    this.itemPoint30=this.physics.add.sprite(flower3_8.x, flower3_8.y,'item3')
+    this.itemPoint31=this.physics.add.sprite(flower3_9.x, flower3_9.y,'item3')
+    this.itemPoint32=this.physics.add.sprite(flower3_10.x, flower3_10.y,'item3')
+    this.itemPoint33=this.physics.add.sprite(flower3_11.x, flower3_11.y,'item3')
+    this.itemPoint34=this.physics.add.sprite(flower3_12.x, flower3_12.y,'item3')
+    this.itemPoint35=this.physics.add.sprite(flower3_13.x, flower3_13.y,'item3')
+    this.itemPoint36=this.physics.add.sprite(flower3_14.x, flower3_14.y,'item3')
+    this.itemPoint37=this.physics.add.sprite(flower3_15.x, flower3_15.y,'item3')
 
+    this.physics.add.overlap(this.player,[this.enemyPoint12,this.enemyPoint13,this.enemyPoint14,this.enemyPoint15,this.enemyPoint16,this.enemyPoint17,this.enemyPoint18,this.enemyPoint19],this.hit_enemy,null,this);
+    this.physics.add.overlap(this.player,[this.itemPoint23,this.itemPoint24,this.itemPoint25,this.itemPoint26,this.itemPoint27,this.itemPoint28,this.itemPoint29,this.itemPoint30,this.itemPoint31,this.itemPoint32,this.itemPoint33,this.itemPoint34,this.itemPoint35,this.itemPoint36,this.itemPoint37],this.collect_flowers,null,this);
     this.player.setScale(2);
     this.player.setCollideWorldBounds(true);
     window.player = this.player;
@@ -113,7 +118,49 @@ class level_3 extends Phaser.Scene {
     // Add time event / movement here
     this.timedEvent = this.time.addEvent({
       delay: 1000,
-      callback: this.delayOneSec,
+      callback: this.moving_sides12,
+      callbackScope: this,
+      loop: false
+    })
+    this.timedEvent = this.time.addEvent({
+      delay: 1000,
+      callback: this.moving_sides13,
+      callbackScope: this,
+      loop: false
+    })
+    this.timedEvent = this.time.addEvent({
+      delay: 1000,
+      callback: this.moving_sides14,
+      callbackScope: this,
+      loop: false
+    })
+    this.timedEvent = this.time.addEvent({
+      delay: 1000,
+      callback: this.moving_sides15,
+      callbackScope: this,
+      loop: false
+    })
+    this.timedEvent = this.time.addEvent({
+      delay: 1000,
+      callback: this.moving_sides16,
+      callbackScope: this,
+      loop: false
+    })
+    this.timedEvent = this.time.addEvent({
+      delay: 1000,
+      callback: this.moving_sides17,
+      callbackScope: this,
+      loop: false
+    })
+    this.timedEvent = this.time.addEvent({
+      delay: 1000,
+      callback: this.moving_sides18,
+      callbackScope: this,
+      loop: false
+    })
+    this.timedEvent = this.time.addEvent({
+      delay: 1000,
+      callback: this.moving_sides19,
       callbackScope: this,
       loop: false
     })
@@ -135,17 +182,11 @@ class level_3 extends Phaser.Scene {
     //set boundary sp camera won't go outside the game world
     this.cameras.main.setBounds(0,0, map.widthInPixels, map.heightInPixels);
 
-  
-    // // Show colliding tiles as different colours
-
-    // const debugGraphics = this.add.graphics().setAlpha(0.75);
-
-    // this.platformLayer.renderDebug(debugGraphics, {
-    // tileColor: null, 
-    // // Color of non-colliding tiles
-    // collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
-    // faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
-    // });
+    var spaceDown = this.input.keyboard.addKey('SPACE');
+    spaceDown.on('down', function(){
+      console.log("spacebar_next");
+      this.scene.start("goodEnding");
+      }, this );
   
   } /////////////////// end of create //////////////////////////////
 
@@ -157,6 +198,11 @@ class level_3 extends Phaser.Scene {
     if(this.player.y<35)
     {
       this.gameOver3()
+    }
+    if(this.player.x>12768)
+    {
+      console.log("end-game");
+      this.scene.start("goodEnding");
     }
     if (this.cursors.left.isDown)
     {
@@ -202,7 +248,158 @@ class level_3 extends Phaser.Scene {
     //     this.player.anims.play('jump',true);
     // }
 } /////////////////// end of update //////////////////////////////
+moving_sides12(){
+  console.log("moving-sides12")
+  this.tweens.timeline({
+    targets: this.enemyPoint12,
+    loop:-1,
+    ease:"Linear",
+    duration: 5000,
+    tweens:[
+      {
+        x:72,
+      },
+      {
+        x:648,
+      }
+    ],
+  });
+}
+moving_sides13(){
+  console.log("moving-sides13")
+  this.tweens.timeline({
+    targets: this.enemyPoint13,
+    loop:-1,
+    ease:"Linear",
+    duration: 5000,
+    tweens:[
+      {
+        x:5892,
+      },
+      {
+        x:7310,
+      }
+    ],
+  });
+}
+moving_sides14(){
+  console.log("moving-sides14")
+  this.tweens.timeline({
+    targets: this.enemyPoint14,
+    loop:-1,
+    ease:"Linear",
+    duration: 5000,
+    tweens:[
+      {
+        x:8612,
+      },
+      {
+        x:9198,
+      }
+    ],
+  });
+}
+moving_sides15(){
+  console.log("moving-sides15")
+  this.tweens.timeline({
+    targets: this.enemyPoint15,
+    loop:-1,
+    ease:"Linear",
+    duration: 5000,
+    tweens:[
+      {
+        x:11294,
+      },
+      {
+        x:11798,
+      }
+    ],
+  });
+}
+moving_sides16(){
+  console.log("moving-sides16")
+  this.tweens.timeline({
+    targets: this.enemyPoint16,
+    loop:-1,
+    ease:"Linear",
+    duration: 5000,
+    tweens:[
+      {
+        x:1066,
+      },
+      {
+        x:1582,
+      }
+    ],
+  });
+}
+moving_sides17(){
+  console.log("moving-sides17")
+  this.tweens.timeline({
+    targets: this.enemyPoint17,
+    loop:-1,
+    ease:"Linear",
+    duration: 5000,
+    tweens:[
+      {
+        x:3712,
+      },
+      {
+        x:3958,
+      }
+    ],
+  });
+}
+moving_sides18(){
+  console.log("moving-sides18")
+  this.tweens.timeline({
+    targets: this.enemyPoint18,
+    loop:-1,
+    ease:"Linear",
+    duration: 5000,
+    tweens:[
+      {
+        x:5914,
+      },
+      {
+        x:6552,
+      }
+    ],
+  });
+}
+moving_sides19(){
+  console.log("moving-sides19")
+  this.tweens.timeline({
+    targets: this.enemyPoint19,
+    loop:-1,
+    ease:"Linear",
+    duration: 5000,
+    tweens:[
+      {
+        x:10882,
+      },
+      {
+        x:11452,
+      }
+    ],
+  });
+}
 gameOver3(){
+  this.Hit_snd.play()
   this.scene.start("gameOver3")
+}
+hit_enemy(player,enemy){
+  console.log("hit")
+  enemy.disableBody(true,true);
+  
+  this.gameOver3();
+}
+collect_flowers(player,item){
+  console.log("collect")
+  window.flower++
+  this.flowernum.setText(window.flower)
+  console.log("window.flower",window.flower)
+  item.disableBody(true,true);
+  this.Collect_snd.play()
 }
 } //////////// end of class world ////////////////////////

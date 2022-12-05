@@ -33,6 +33,9 @@ class level_2 extends Phaser.Scene {
    
     let tilesArray = [deco2Tiles,platform2Tiles];
 
+    this.Hit_snd=this.sound.add("lowtone")
+    this.Collect_snd=this.sound.add("hightone")
+    this.flowernum=this.add.text(50,50,window.flower,{font:'20px Courier',fill:'#ffffff'}).setScrollFactor(0);
 
     this.platform2Layer = this.physics.add.staticGroup();
     this.platform2Layer = map.createLayer('platform2Layer',tilesArray,0,0);
@@ -61,25 +64,25 @@ class level_2 extends Phaser.Scene {
     var flower2_11 = map.findObject("object2Layer",(obj) => obj.name ==="item2-11")
 
     this.player = this.physics.add.sprite(startPoint.x,startPoint.y,"mc")
-    this.enemyPoint=this.physics.add.sprite(bee2_1.x, bee2_1.y,'bee').play('bee-move')
-    this.enemyPoint=this.physics.add.sprite(bee2_2.x, bee2_2.y,'bee').play('bee-move')
-    this.enemyPoint=this.physics.add.sprite(bee2_3.x, bee2_3.y,'bee').play('bee-move')
+    this.enemyPoint6=this.physics.add.sprite(bee2_1.x, bee2_1.y,'bee').play('bee-move')
+    this.enemyPoint7=this.physics.add.sprite(bee2_2.x, bee2_2.y,'bee').play('bee-move')
+    this.enemyPoint8=this.physics.add.sprite(bee2_3.x, bee2_3.y,'bee').play('bee-move')
 
-    this.enemyPoint=this.physics.add.sprite(slug2_1.x, slug2_1.y,'slug').play('slug-move')
-    this.enemyPoint=this.physics.add.sprite(slug2_2.x, slug2_2.y,'slug').play('slug-move')
-    this.enemyPoint=this.physics.add.sprite(slug2_3.x, slug2_3.y,'slug').play('slug-move')
+    this.enemyPoint9=this.physics.add.sprite(slug2_1.x, slug2_1.y,'slug').play('slug-move')
+    this.enemyPoint10=this.physics.add.sprite(slug2_2.x, slug2_2.y,'slug').play('slug-move')
+    this.enemyPoint11=this.physics.add.sprite(slug2_3.x, slug2_3.y,'slug').play('slug-move')
 
-    this.itemPoint=this.physics.add.sprite(flower2_1.x, flower2_1.y,'item2')
-    this.itemPoint=this.physics.add.sprite(flower2_2.x, flower2_2.y,'item2')
-    this.itemPoint=this.physics.add.sprite(flower2_3.x, flower2_3.y,'item2')
-    this.itemPoint=this.physics.add.sprite(flower2_4.x, flower2_4.y,'item2')
-    this.itemPoint=this.physics.add.sprite(flower2_5.x, flower2_5.y,'item2')
-    this.itemPoint=this.physics.add.sprite(flower2_6.x, flower2_6.y,'item2')
-    this.itemPoint=this.physics.add.sprite(flower2_7.x, flower2_7.y,'item2')
-    this.itemPoint=this.physics.add.sprite(flower2_8.x, flower2_8.y,'item2')
-    this.itemPoint=this.physics.add.sprite(flower2_9.x, flower2_9.y,'item2')
-    this.itemPoint=this.physics.add.sprite(flower2_10.x, flower2_10.y,'item2')
-    this.itemPoint=this.physics.add.sprite(flower2_11.x, flower2_11.y,'item2')
+    this.itemPoint12=this.physics.add.sprite(flower2_1.x, flower2_1.y,'item2')
+    this.itemPoint13=this.physics.add.sprite(flower2_2.x, flower2_2.y,'item2')
+    this.itemPoint14=this.physics.add.sprite(flower2_3.x, flower2_3.y,'item2')
+    this.itemPoint15=this.physics.add.sprite(flower2_4.x, flower2_4.y,'item2')
+    this.itemPoint16=this.physics.add.sprite(flower2_5.x, flower2_5.y,'item2')
+    this.itemPoint17=this.physics.add.sprite(flower2_6.x, flower2_6.y,'item2')
+    this.itemPoint18=this.physics.add.sprite(flower2_7.x, flower2_7.y,'item2')
+    this.itemPoint19=this.physics.add.sprite(flower2_8.x, flower2_8.y,'item2')
+    this.itemPoint20=this.physics.add.sprite(flower2_9.x, flower2_9.y,'item2')
+    this.itemPoint21=this.physics.add.sprite(flower2_10.x, flower2_10.y,'item2')
+    this.itemPoint22=this.physics.add.sprite(flower2_11.x, flower2_11.y,'item2')
     this.player.setScale(2)
     this.player.setCollideWorldBounds(true);
     window.player = this.player;
@@ -90,7 +93,37 @@ class level_2 extends Phaser.Scene {
     // Add time event / movement here
     this.timedEvent = this.time.addEvent({
       delay: 1000,
-      callback: this.delayOneSec,
+      callback: this.moving_sides6,
+      callbackScope: this,
+      loop: false
+    })
+    this.timedEvent = this.time.addEvent({
+      delay: 1000,
+      callback: this.moving_sides7,
+      callbackScope: this,
+      loop: false
+    })
+    this.timedEvent = this.time.addEvent({
+      delay: 1000,
+      callback: this.moving_sides8,
+      callbackScope: this,
+      loop: false
+    })
+    this.timedEvent = this.time.addEvent({
+      delay: 1000,
+      callback: this.moving_sides9,
+      callbackScope: this,
+      loop: false
+    })
+    this.timedEvent = this.time.addEvent({
+      delay: 1000,
+      callback: this.moving_sides10,
+      callbackScope: this,
+      loop: false
+    })
+    this.timedEvent = this.time.addEvent({
+      delay: 1000,
+      callback: this.moving_sides11,
       callbackScope: this,
       loop: false
     })
@@ -102,6 +135,9 @@ class level_2 extends Phaser.Scene {
     // What will collider witg what layers
     //this.physics.add.collider(mapLayer, this.player);
     this.physics.add.collider(this.platform2Layer,this.player)
+
+    this.physics.add.overlap(this.player,[this.enemyPoint6,this.enemyPoint7,this.enemyPoint8,this.enemyPoint9,this.enemyPoint10,this.enemyPoint11],this.hit_enemy,null,this);
+    this.physics.add.overlap(this.player,[this.itemPoint12,this.itemPoint13,this.itemPoint14,this.itemPoint15,this.itemPoint16,this.itemPoint17,this.itemPoint18,this.itemPoint19,this.itemPoint20,this.itemPoint21,this.itemPoint22],this.collect_flowers,null,this);
     this.platform2Layer.setCollisionByExclusion(-1,true)
     // create the arrow keys
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -182,17 +218,129 @@ class level_2 extends Phaser.Scene {
         this.player.setVelocityY(-200)
         this.player.anims.play('jump-left', true);
     }
-    // if (cursors.up.isDown && player.body.touching.platformLayer)
-    // {
-    //     player.setVelocityY(-330);
-    //     this.player.anims.play('jump',true);
-    // }
+   
 } /////////////////// end of update //////////////////////////////
+moving_sides6(){
+  console.log("moving-sides6")
+  this.tweens.timeline({
+    targets: this.enemyPoint6,
+    loop:-1,
+    ease:"Linear",
+    duration: 5000,
+    tweens:[
+      {
+        x:5528,
+      },
+      {
+        x:5938,
+      }
+    ],
+  });
+}
+moving_sides7(){
+  console.log("moving-sides7")
+  this.tweens.timeline({
+    targets: this.enemyPoint7,
+    loop:-1,
+    ease:"Linear",
+    duration: 5000,
+    tweens:[
+      {
+        x:6578,
+      },
+      {
+        x:7625,
+      }
+    ],
+  });
+}
+moving_sides8(){
+  console.log("moving-sides8")
+  this.tweens.timeline({
+    targets: this.enemyPoint8,
+    loop:-1,
+    ease:"Linear",
+    duration: 5000,
+    tweens:[
+      {
+        x:3957,
+      },
+      {
+        x:4576,
+      }
+    ],
+  });
+}
+moving_sides9(){
+  console.log("moving-sides9")
+  this.tweens.timeline({
+    targets: this.enemyPoint9,
+    loop:-1,
+    ease:"Linear",
+    duration: 5000,
+    tweens:[
+      {
+        x:4942,
+      },
+      {
+        x:5294,
+      }
+    ],
+  });
+}
+moving_sides10(){
+  console.log("moving-sides10")
+  this.tweens.timeline({
+    targets: this.enemyPoint10,
+    loop:-1,
+    ease:"Linear",
+    duration: 5000,
+    tweens:[
+      {
+        x:7578,
+      },
+      {
+        x:7977,
+      }
+    ],
+  });
+}
+moving_sides11(){
+  console.log("moving-sides11")
+  this.tweens.timeline({
+    targets: this.enemyPoint11,
+    loop:-1,
+    ease:"Linear",
+    duration: 5000,
+    tweens:[
+      {
+        x:10024,
+      },
+      {
+        x:10388,
+      }
+    ],
+  });
+}
 level_3(){
   console.log("next_scene")
   this.scene.start("level_3")
 }
 gameOver2(){
+  this.Hit_snd.play();
   this.scene.start("gameOver2")
+}
+hit_enemy(player,enemy){
+  console.log("hit")
+  enemy.disableBody(true,true);
+  this.gameOver2();
+}
+collect_flowers(player,item){
+  console.log("collect")
+  window.flower++
+  this.flowernum.setText(window.flower)
+  console.log("window.flower",window.flower)
+  item.disableBody(true,true);
+  this.Collect_snd.play()
 }
 } //////////// end of class world ////////////////////////

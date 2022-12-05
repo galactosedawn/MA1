@@ -7,7 +7,6 @@
     physics: {
         default: 'arcade',
         arcade: {
-            //gravity: { y: 100},
             debug: true
         }
     },
@@ -20,4 +19,5 @@
     scene: [preload,level_1,level_2,level_3,instruction,gameOver,gameOver2,gameOver3,goodEnding]
 };
 
+window.flower=0
 var game = new Phaser.Game(config);

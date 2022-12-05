@@ -6,9 +6,7 @@ class gameOver3 extends Phaser.Scene {
     }
 create() {
 
-    this.add.text(10, 10, 'Bad Ending', { font: '24px Courier', fill: '#FFFF00' });
-    this.add.text(10, 34, 'You will have to restart everything now', { font: '24px Courier', fill: '#FFFF00' });
-    this.add.text(10, 100, 'Click or Space to continue', { font: '24px Courier', fill: '#FFFF00' });
+    this.add.image(400,320,"gameover3")
 
     var spaceDown = this.input.keyboard.addKey('SPACE');
         
