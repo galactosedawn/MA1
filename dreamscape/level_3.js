@@ -194,12 +194,6 @@ class level_3 extends Phaser.Scene {
 
     //set boundary sp camera won't go outside the game world
     this.cameras.main.setBounds(0,0, map.widthInPixels, map.heightInPixels);
-
-    var spaceDown = this.input.keyboard.addKey('SPACE');
-    spaceDown.on('down', function(){
-      console.log("test");
-      this.bonusending();
-      }, this );
   
   } /////////////////// end of create //////////////////////////////
 

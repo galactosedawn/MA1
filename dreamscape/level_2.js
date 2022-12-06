@@ -173,11 +173,7 @@ class level_2 extends Phaser.Scene {
     // collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
     // faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
     // });
-    var spaceDown = this.input.keyboard.addKey('SPACE');
-    spaceDown.on('down', function(){
-      console.log("spacebar_next");
-      this.level_3();
-      }, this ); 
+    
   } /////////////////// end of create //////////////////////////////
 
   update(){

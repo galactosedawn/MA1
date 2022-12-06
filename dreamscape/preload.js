@@ -41,13 +41,13 @@ class preload extends Phaser.Scene {
 
         this.load.image("threatimg","assets/threat.png")
 
-        this.add.image('bs1',"assets/bs-1.png")
-        this.add.image('bs2',"assets/bs-2.png")
-        this.add.image('bs3',"assets/bs-3.png")
-        this.add.image('bs4',"assets/bs-4.png")
-        this.add.image('bs5',"assets/bs-5.png")
-        this.add.image('bs6',"assets/bs-6.png")
-        this.add.image('bs7',"assets/bs-7.png")
+        this.load.image('bs1',"assets/bs-1.png")
+        this.load.image('bs2',"assets/bs-2.png")
+        this.load.image('bs3',"assets/bs-3.png")
+        this.load.image('bs4',"assets/bs-4.png")
+        this.load.image('bs5',"assets/bs-5.png")
+        this.load.image('bs6',"assets/bs-6.png")
+        this.load.image('bs7',"assets/bs-7.png")
 
         // Preload any sound and music here
         this.load.audio('lowtone','assets/lowtone.wav')
