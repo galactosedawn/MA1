@@ -76,6 +76,7 @@ create() {
         }, this );
 }
 endsoundplay(){
+  this.bsendsound.setVolume(0);
   this.endsound.play();
   return null;
 }

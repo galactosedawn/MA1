@@ -66,9 +66,9 @@ class level_2 extends Phaser.Scene {
     this.add.text(50, 575, 'but this time its different,', { font: '18px Courier', fill: '#edd4ff' });
     this.add.text(50, 600, 'the scenery is unrecognisable from the previous one', { font: '18px Courier', fill: '#edd4ff' });
     this.add.text(4500, 510, 'Do I even have a family to go back to?', { font: '18px Courier', fill: '#dca9ff' });
-    this.add.text(7040, 250, 'But it feels nice here. I would not want to wake up.', { font: '18px Courier', fill: '#edd4ff' });
+    this.add.text(7040, 250, 'But it feels nice here. I would not want to wake up.', { font: '18px Courier', fill: '#ba7bd6' });
     this.add.text(9200, 160, 'what if reality is worse than this', { font: '18px Courier', fill: '#dca9ff' });
-    this.add.text(10190, 385, 'What if life gets too hard again?', { font: '18px Courier', fill: '#dca9ff' });
+    this.add.text(10190, 415, 'What if life gets too hard again?', { font: '18px Courier', fill: '#dca9ff' });
     this.add.text(12450, 150, 'I miss them', { font: '18px Courier', fill: '#dca9ff' });
 
     this.player = this.physics.add.sprite(startPoint.x,startPoint.y,"mc")

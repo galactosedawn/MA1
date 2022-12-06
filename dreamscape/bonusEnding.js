@@ -5,13 +5,13 @@ class bonusEnding extends Phaser.Scene {
         super({ key: 'bonusEnding' });
     }
 create() {
-    this.endsound=this.sound.add('ending2_bgm').setVolume(0.3)
+    this.bsendsound=this.sound.add('ending2_bgm').setVolume(0.3)
 
     var spaceDown = this.input.keyboard.addKey('SPACE');
         
     this.timedEvent = this.time.addEvent({
         delay: 1000,
-        callback: this.endsoundplay,
+        callback: this.bsendsoundplay,
         callbackScope: this,
         loop: false,
       })
@@ -70,13 +70,14 @@ create() {
         this.mainmenu();
         }, this );
 }
-endsoundplay(){
-  this.endsound.play();
+bsendsoundplay(){
+  this.endsound.setVolume(0);
+  this.bsendsound.play();
   return null;
 }
 mainmenu(){
     console.log("thank you for playing")
-    this.endsound.setVolume(0);
+    this.bsendsound.setVolume(0);
     this.scene.start("preload")
     window.flower=0;
     return false;
