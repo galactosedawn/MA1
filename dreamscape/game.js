@@ -7,7 +7,7 @@
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true
+            debug: false
         }
     },
     // scale: {
@@ -16,7 +16,7 @@
     // },
     backgroundColor: '#000000',
     pixelArt: true,
-    scene: [preload,level_1,level_2,level_3,instruction,gameOver,gameOver2,gameOver3,goodEnding]
+    scene: [preload,level_1,level_2,level_3,instruction,gameOver,gameOver2,gameOver3,goodEnding,bonusEnding]
 };
 
 window.flower=0

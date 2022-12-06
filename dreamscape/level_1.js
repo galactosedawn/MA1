@@ -12,17 +12,12 @@ class level_1 extends Phaser.Scene {
     //this.load.tilemapTiledJSON("world1", "assets/Tutorial1.json");
     this.load.tilemapTiledJSON("lvl1", "assets/level_1_tiles.tmj");
     // Step 2 : Preload any images here
-    // this.load.audio('lvl1_bgm', 'assets/level 1 cinematic-documentary-115669.mp3');
-    // this.load.audio('lowtone','assets/lowtone.wav')
-    // this.load.audio('hightone','assets/hightone.wav')
-
     this.load.image("backgroundimg", "assets/level_1_bg.png");
     this.load.image("tileset1img", "assets/tileset1.png")
     this.load.image("tileset2img", "assets/tileset2.png")
     //this.load.image("building", "assets/Buildings32x32.png");
     //this.load.image("street", "assets/Street32x32.png");
-    this.music = this.sound.add('hightone').setVolume(0.3)
-    this.music = this.sound.add('lowtone').setVolume(0.3)
+    
   }
 
   create() {
@@ -53,6 +48,7 @@ class level_1 extends Phaser.Scene {
     //this.buildingLayer = map.createLayer("buildingLayer",tilesArray,0,0);
     this.Hit_snd=this.sound.add("lowtone")
     this.Collect_snd=this.sound.add("hightone")
+    this.lvl1sound=this.sound.add('lvl1_bgm',{loop:true}).setVolume(0.3)
 
     this.platformLayer = this.physics.add.staticGroup();
     this.platformLayer = map.createLayer('platformLayer',tilesArray,0,0);
@@ -79,13 +75,26 @@ class level_1 extends Phaser.Scene {
     var flower1_10 = map.findObject("objectLayer",(obj) => obj.name ==="item1-10")
     var flower1_11 = map.findObject("objectLayer",(obj) => obj.name ==="item1-11")
 
+    this.add.text(100, 475, 'Firstly, the flowers disappears when I touch them.', { font: '18px Courier', fill: '#dca9ff' });
+    this.add.text(150, 525, 'They do not effect much, but i do not mind.', { font: '16px Courier', fill: '#dca9ff' });
+    this.add.text(150, 550, 'In fact, my friend would have love them', { font: '16px Courier', fill: '#dca9ff' });
+    this.add.text(800, 120, 'Secondly, I can not touch the down below', { font: '18px Courier', fill: '#dca9ff' });
+    this.add.text(800, 145, 'or the sky above that I cannot see.', { font: '18px Courier', fill: '#dca9ff' });
+    this.add.text(800, 180, 'I will just end up at the same spot.', { font: '16px Courier', fill: '#dca9ff' });
+    this.add.text(1500, 125, 'Thirdly, gravity and pshyics just did not work as I know.', { font: '18px Courier', fill: '#dca9ff' });
+    this.add.text(1500, 160, 'I am pretty sure I should not be able to run hours on end.', { font: '16px Courier', fill: '#dca9ff' });
+    this.add.text(1500, 180, 'or fly off for that matter', { font: '16px Courier', fill: '#dca9ff' });
+    this.add.text(2800, 120, 'Fourthly, I can not touch the moving creatures,', { font: '18px Courier', fill: '#dca9ff' });
+    this.add.text(2800, 155, 'which I really do not mind, they creep me out.', { font: '16px Courier', fill: '#dca9ff' });
+    this.add.text(7025, 580, 'ah yes the uncollectable flower', { font: '12px Courier', fill: '#dca9ff' });
+    this.add.text(8400, 125, 'Wait... I do not think I see this part of the forest before...', { font: '16px Courier', fill: '#dca9ff' });
+    this.add.text(12000, 470, 'I never though of I would made it this far.', { font: '16px Courier', fill: '#dca9ff' });
+
     this.player = this.physics.add.sprite(startPoint.x,startPoint.y,"mc")
     this.player.setScale(2)
     
     this.player.setCollideWorldBounds(true);
     window.player = this.player;
-
-    this.flowernum=this.add.text(50,50,window.flower,{font:'20px Courier',fill:'#ffffff'}).setScrollFactor(0);
     
     this.physics.world.bounds.width =this.platformLayer.width;
     this.physics.world.bounds.height =this.platformLayer.height;
@@ -95,7 +104,6 @@ class level_1 extends Phaser.Scene {
     this.enemyPoint3=this.physics.add.sprite(slug1_1.x, slug1_1.y,'slug').play('slug-move')
     this.enemyPoint4=this.physics.add.sprite(slug1_2.x, slug1_2.y,'slug').play('slug-move')
     this.enemyPoint5=this.physics.add.sprite(slug1_3.x, slug1_3.y,'slug').play('slug-move')
-
 
     this.itemPoint1=this.physics.add.sprite(flower1_1.x, flower1_1.y,'item1')
     this.itemPoint2=this.physics.add.sprite(flower1_2.x, flower1_2.y,'item1')
@@ -140,6 +148,12 @@ class level_1 extends Phaser.Scene {
       callbackScope: this,
       loop: false,
     })
+    this.timedEvent = this.time.addEvent({
+      delay: 1000,
+      callback: this.lvl1soundplay,
+      callbackScope: this,
+      loop: false,
+    })
     
     
     // get the tileIndex number in json, +1
@@ -170,7 +184,7 @@ class level_1 extends Phaser.Scene {
     // // Show colliding tiles as different colours
 
     // const debugGraphics = this.add.graphics().setAlpha(0.75);
-
+    this.flowernum=this.add.text(50,50,window.flower,{font:'20px Courier',fill:'#ffffff'}).setScrollFactor(0);
     // this.platformLayer.renderDebug(debugGraphics, {
     // tileColor: null, 
     // // Color of non-colliding tiles
@@ -180,7 +194,7 @@ class level_1 extends Phaser.Scene {
     var spaceDown = this.input.keyboard.addKey('SPACE');
     spaceDown.on('down', function(){
       console.log("spacebar_next");
-      this.scene.start("level_2");
+      this.level_2();
       }, this ); 
 
   } /////////////////// end of create //////////////////////////////
@@ -196,8 +210,7 @@ class level_1 extends Phaser.Scene {
     }
     if(this.player.x>12734.10)
     {
-      console.log("level_2_function");
-      this.scene.start("level_2");
+      this.level_2();
     }
     if (this.cursors.left.isDown)
     {
@@ -345,10 +358,17 @@ collect_flowers(player,item){
 
 level_2(){
   console.log("next_scene")
+  this.lvl1sound.setVolume(0);
   this.scene.start("level_2")
 }
 gameOver(){
   this.Hit_snd.play()
+  this.lvl1sound.setVolume(0);
   this.scene.start("gameOver")
+}
+lvl1soundplay(){
+  this.lvl1sound.play();
+  return null;
+ 
 }
 } //////////// end of class world ////////////////////////

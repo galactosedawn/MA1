@@ -1,114 +1,115 @@
-class goodEnding extends Phaser.Scene {
+class bonusEnding extends Phaser.Scene {
 
     constructor ()
     {
-        super({ key: 'goodEnding' });
+        super({ key: 'bonusEnding' });
     }
 create() {
-    this.endsound=this.sound.add('ending1_bgm').setVolume(0.3)
+    this.add.text(150, 100, 'congratulations on completing the game++', { font: '24px Courier', fill: '#dca9ff' });
+
+    this.bsendsound=this.sound.add('ending2_bgm').setVolume(0.1)
 
     var spaceDown = this.input.keyboard.addKey('SPACE');
         
     this.timedEvent = this.time.addEvent({
         delay: 1000,
-        callback: this.endsoundplay,
+        callback: this.bsendsoundplay,
         callbackScope: this,
         loop: false,
       })
-    
-    this.timedEvent = this.time.addEvent({
+
+      this.timedEvent = this.time.addEvent({
         delay: 0,
-        callback: this.end0,
+        callback: this.bs1,
         callbackScope: this,
         loop: false,
       })
+
       this.timedEvent = this.time.addEvent({
         delay: 1000,
-        callback: this.end1,
+        callback: this.bs2,
         callbackScope: this,
         loop: false,
       }) 
-    
+
     this.timedEvent = this.time.addEvent({
         delay: 3000,
-        callback: this.end2,
+        callback: this.bs3,
         callbackScope: this,
         loop: false,
       })   
+
     this.timedEvent = this.time.addEvent({
         delay: 8000,
-        callback: this.end3,
+        callback: this.bs4,
         callbackScope: this,
         loop: false,
       })  
+
     this.timedEvent = this.time.addEvent({
         delay: 11000,
-        callback: this.end4,
+        callback: this.bs5,
         callbackScope: this,
         loop: false,
       }) 
+
       this.timedEvent = this.time.addEvent({
         delay: 21000,
-        callback: this.end5,
+        callback: this.bs6,
         callbackScope: this,
         loop: false,
       }) 
+
       this.timedEvent = this.time.addEvent({
         delay: 26000,
-        callback: this.end6,
+        callback: this.bs7,
         callbackScope: this,
         loop: false,
       })
-      this.timedEvent = this.time.addEvent({
-        delay: 33000,
-        callback: this.end7,
-        callbackScope: this,
-        loop: false,
-      })  
+      
       this.timedEvent = this.time.addEvent({
         delay: 36000,
         callback: this.continue,
         callbackScope: this,
         loop: false,
       }) 
+
     spaceDown.on('down', function(){
         this.mainmenu();
         }, this );
 }
-endsoundplay(){
-  this.endsound.play();
+
+bsendsoundplay(){
+  this.bsendsound.play();
   return null;
 }
 mainmenu(){
     console.log("thank you for playing")
-    this.endsound.setVolume(0);
+    this.bsendsound.setVolume(0);
     this.scene.start("preload")
     window.flower=0;
     return false;
 }
-end0(){
-    this.add.image(400,320,'end0img')
+bs1(){
+    this.add.image(400,320,'bs1')
 }
-end1(){
-    this.add.image(400,320,'end1img')
+bs2(){
+    this.add.image(400,320,'bs2')
 }
-end2(){
-    this.add.image(400,320,'end2img')
+bs3(){
+    this.add.image(400,320,'bs3')
 }
-end3(){
-    this.add.image(400,320,'end3img')
+bs4(){
+    this.add.image(400,320,'bs4')
 }
-end4(){
-    this.add.image(400,320,'end4img')
+bs5(){
+    this.add.image(400,320,'bs5')
 }
-end5(){
-    this.add.image(400,320,'end5img')
+bs6(){
+    this.add.image(400,320,'bs6')
 }
-end6(){
-    this.add.image(400,320,'end6img')
-}
-end7(){
-    this.add.image(400,320,'end7img')
+bs7(){
+    this.add.image(400,320,'bs7')
 }
 continue(){
     this.add.image(400,600,'continueimg')

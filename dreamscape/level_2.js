@@ -12,7 +12,6 @@ class level_2 extends Phaser.Scene {
     //this.load.tilemapTiledJSON("world1", "assets/Tutorial1.json");
     this.load.tilemapTiledJSON("lvl2", "assets/level_2_tiles.tmj");
     // Step 2 : Preload any images here
-    this.music = this.sound.add('lvl2_bgm').setVolume(0.3)
     this.load.image("background2img", "assets/level_2_bg.png");
     this.load.image("tileset3img", "assets/tileset3.png")
     this.load.image("tileset5img", "assets/tileset5.png")
@@ -35,7 +34,7 @@ class level_2 extends Phaser.Scene {
 
     this.Hit_snd=this.sound.add("lowtone")
     this.Collect_snd=this.sound.add("hightone")
-    this.flowernum=this.add.text(50,50,window.flower,{font:'20px Courier',fill:'#ffffff'}).setScrollFactor(0);
+    this.lvl2sound=this.sound.add('lvl2_bgm',{loop:true}).setVolume(0.3)
 
     this.platform2Layer = this.physics.add.staticGroup();
     this.platform2Layer = map.createLayer('platform2Layer',tilesArray,0,0);
@@ -63,6 +62,15 @@ class level_2 extends Phaser.Scene {
     var flower2_10 = map.findObject("object2Layer",(obj) => obj.name ==="item2-10")
     var flower2_11 = map.findObject("object2Layer",(obj) => obj.name ==="item2-11")
 
+    this.add.text(50, 550, 'I have been wondering for what felt like hours', { font: '18px Courier', fill: '#edd4ff' });
+    this.add.text(50, 575, 'but this time its different,', { font: '18px Courier', fill: '#edd4ff' });
+    this.add.text(50, 600, 'the scenery is unrecognisable from the previous one', { font: '18px Courier', fill: '#edd4ff' });
+    this.add.text(4500, 510, 'Do I even have a family to go back to?', { font: '18px Courier', fill: '#dca9ff' });
+    this.add.text(7040, 250, 'But it feels nice here. I would not want to wake up.', { font: '18px Courier', fill: '#edd4ff' });
+    this.add.text(9200, 160, 'what if reality is worse than this', { font: '18px Courier', fill: '#dca9ff' });
+    this.add.text(10190, 385, 'What if life gets too hard again?', { font: '18px Courier', fill: '#dca9ff' });
+    this.add.text(12450, 150, 'I miss them', { font: '18px Courier', fill: '#dca9ff' });
+
     this.player = this.physics.add.sprite(startPoint.x,startPoint.y,"mc")
     this.enemyPoint6=this.physics.add.sprite(bee2_1.x, bee2_1.y,'bee').play('bee-move')
     this.enemyPoint7=this.physics.add.sprite(bee2_2.x, bee2_2.y,'bee').play('bee-move')
@@ -86,7 +94,7 @@ class level_2 extends Phaser.Scene {
     this.player.setScale(2)
     this.player.setCollideWorldBounds(true);
     window.player = this.player;
-    
+    this.flowernum=this.add.text(50,50,window.flower,{font:'20px Courier',fill:'#ffffff'}).setScrollFactor(0);
     this.physics.world.bounds.width =this.platform2Layer.width;
     this.physics.world.bounds.height =this.platform2Layer.height;
 
@@ -127,6 +135,12 @@ class level_2 extends Phaser.Scene {
       callbackScope: this,
       loop: false
     })
+    this.timedEvent = this.time.addEvent({
+      delay: 1000,
+      callback: this.lvl2soundplay,
+      callbackScope: this,
+      loop: false,
+    })
     // get the tileIndex number in json, +1
     //mapLayer.setTileIndexCallback(11, this.room1, this);
 
@@ -162,7 +176,7 @@ class level_2 extends Phaser.Scene {
     var spaceDown = this.input.keyboard.addKey('SPACE');
     spaceDown.on('down', function(){
       console.log("spacebar_next");
-      this.scene.start("level_3");
+      this.level_3();
       }, this ); 
   } /////////////////// end of create //////////////////////////////
 
@@ -177,8 +191,7 @@ class level_2 extends Phaser.Scene {
     }
     if(this.player.x>12734.10)
     {
-      console.log("level_3_function");
-      this.scene.start("level_3");
+      this.level_3()
     }
     if (this.cursors.left.isDown)
     {
@@ -324,10 +337,12 @@ moving_sides11(){
 }
 level_3(){
   console.log("next_scene")
+  this.lvl2sound.setVolume(0);
   this.scene.start("level_3")
 }
 gameOver2(){
   this.Hit_snd.play();
+  this.lvl2sound.setVolume(0);
   this.scene.start("gameOver2")
 }
 hit_enemy(player,enemy){
@@ -342,5 +357,9 @@ collect_flowers(player,item){
   console.log("window.flower",window.flower)
   item.disableBody(true,true);
   this.Collect_snd.play()
+}
+lvl2soundplay(){
+  this.lvl2sound.play();
+  return null;
 }
 } //////////// end of class world ////////////////////////

@@ -16,8 +16,24 @@ create() {
     //     }, this)
     spaceDown.on('down', function(){
         console.log("spacebar_next");
-        this.scene.start("level_1");
+        this.restart();
         }, this );
+
+    this.cursors = this.input.keyboard.createCursorKeys();
+    var xDown = this.input.keyboard.addKey('x');
+
+    xDown.on('down', function(){
+    console.log("x back to main menu");
+    this.mainmenu();
+    }, this );
 }
 
+restart(){
+    this.scene.start("level_1")
+}
+mainmenu(){
+    this.scene.start('preload');
+    window.flower=0;
+    return false;
+}
 } // end of class

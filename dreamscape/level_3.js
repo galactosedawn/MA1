@@ -32,7 +32,8 @@ class level_3 extends Phaser.Scene {
 
     this.Hit_snd=this.sound.add("lowtone")
     this.Collect_snd=this.sound.add("hightone")
-    this.flowernum=this.add.text(50,50,window.flower,{font:'20px Courier',fill:'#ffffff'}).setScrollFactor(0);
+    this.lvl3sound=this.sound.add('lvl3_bgm',{loop:true}).setVolume(0.3)
+
     let deco3Tiles = map.addTilesetImage("tileset6","tileset6img");
     let platform3Tiles = map.addTilesetImage("tileset4","tileset4img");
 
@@ -50,7 +51,7 @@ class level_3 extends Phaser.Scene {
     this.platform3Layer = this.physics.add.staticGroup();
     this.platform3Layer = map.createLayer('platform3Layer',tilesArray,0,0);
     this.deco3Layer = map.createLayer('deco3Layer',tilesArray,0,0);
-
+    this.add.sprite(12572,500,'lastdoor').play('door-glow').setScale(2);
     // Add main player here with physics.add.sprite
     var startPoint = map.findObject("object3Layer",(obj) => obj.name === "start");
     var bee3_1 = map.findObject("object3Layer",(obj) => obj.name ==="bee3-1")
@@ -79,6 +80,11 @@ class level_3 extends Phaser.Scene {
     var flower3_14 = map.findObject("object3Layer",(obj) => obj.name ==="item3-14")
     var flower3_15 = map.findObject("object3Layer",(obj) => obj.name ==="item3-15")
 
+    this.add.text(250, 350, '... I do not like this', { font: '18px Courier', fill: '#dca9ff' });
+    this.add.image(1850,150,'threatimg')
+    this.add.text(1850,275,'...Huh?', { font: '18px Courier', fill: '#dca9ff' })
+    this.add.text(12255,500,'I choose...',{ font: '18px Courier', fill: '#dca9ff' })
+
     this.player = this.physics.add.sprite(startPoint.x,startPoint.y,"mc");
     this.enemyPoint12=this.physics.add.sprite(bee3_1.x, bee3_1.y,'bee').play('bee-move')
     this.enemyPoint13=this.physics.add.sprite(bee3_2.x, bee3_2.y,'bee').play('bee-move')
@@ -105,13 +111,14 @@ class level_3 extends Phaser.Scene {
     this.itemPoint35=this.physics.add.sprite(flower3_13.x, flower3_13.y,'item3')
     this.itemPoint36=this.physics.add.sprite(flower3_14.x, flower3_14.y,'item3')
     this.itemPoint37=this.physics.add.sprite(flower3_15.x, flower3_15.y,'item3')
-
+    
     this.physics.add.overlap(this.player,[this.enemyPoint12,this.enemyPoint13,this.enemyPoint14,this.enemyPoint15,this.enemyPoint16,this.enemyPoint17,this.enemyPoint18,this.enemyPoint19],this.hit_enemy,null,this);
     this.physics.add.overlap(this.player,[this.itemPoint23,this.itemPoint24,this.itemPoint25,this.itemPoint26,this.itemPoint27,this.itemPoint28,this.itemPoint29,this.itemPoint30,this.itemPoint31,this.itemPoint32,this.itemPoint33,this.itemPoint34,this.itemPoint35,this.itemPoint36,this.itemPoint37],this.collect_flowers,null,this);
     this.player.setScale(2);
     this.player.setCollideWorldBounds(true);
     window.player = this.player;
-    
+    this.flowernum=this.add.text(50,50,window.flower,{font:'20px Courier',fill:'#ffffff'}).setScrollFactor(0);
+
     this.physics.world.bounds.width =this.platform3Layer.width;
     this.physics.world.bounds.height =this.platform3Layer.height;
 
@@ -164,6 +171,12 @@ class level_3 extends Phaser.Scene {
       callbackScope: this,
       loop: false
     })
+    this.timedEvent = this.time.addEvent({
+      delay: 1000,
+      callback: this.lvl3soundplay,
+      callbackScope: this,
+      loop: false,
+    })
     // get the tileIndex number in json, +1
     //mapLayer.setTileIndexCallback(11, this.room1, this);
 
@@ -184,8 +197,8 @@ class level_3 extends Phaser.Scene {
 
     var spaceDown = this.input.keyboard.addKey('SPACE');
     spaceDown.on('down', function(){
-      console.log("spacebar_next");
-      this.scene.start("goodEnding");
+      console.log("test");
+      this.bonusending();
       }, this );
   
   } /////////////////// end of create //////////////////////////////
@@ -199,10 +212,15 @@ class level_3 extends Phaser.Scene {
     {
       this.gameOver3()
     }
-    if(this.player.x>12768)
+    if(this.player.x < 12580 &&this.player.x > 12565 && this.player.y < 515 && this.player.y > 505)
     {
       console.log("end-game");
-      this.scene.start("goodEnding");
+      this.goodending();
+    }
+    if(this.player.x < 12580 &&this.player.x > 12565 && this.player.y < 515 && this.player.y > 505&&window.flower>80)
+    {
+      console.log("bonus");
+      this.bonusending();
     }
     if (this.cursors.left.isDown)
     {
@@ -242,11 +260,7 @@ class level_3 extends Phaser.Scene {
         this.player.setVelocityY(-200)
         this.player.anims.play('jump-left', true);
     }
-    // if (cursors.up.isDown && player.body.touching.platformLayer)
-    // {
-    //     player.setVelocityY(-330);
-    //     this.player.anims.play('jump',true);
-    // }
+   
 } /////////////////// end of update //////////////////////////////
 moving_sides12(){
   console.log("moving-sides12")
@@ -386,12 +400,21 @@ moving_sides19(){
 }
 gameOver3(){
   this.Hit_snd.play()
+  this.lvl3sound.setVolume(0);
   this.scene.start("gameOver3")
+  return false;
+}
+goodending(){
+  this.lvl3sound.setVolume(0);
+  this.scene.start('goodEnding')
+}
+bonusending(){
+  this.lvl3sound.setVolume(0);
+  this.scene.start('bonusEnding')
 }
 hit_enemy(player,enemy){
   console.log("hit")
   enemy.disableBody(true,true);
-  
   this.gameOver3();
 }
 collect_flowers(player,item){
@@ -401,5 +424,9 @@ collect_flowers(player,item){
   console.log("window.flower",window.flower)
   item.disableBody(true,true);
   this.Collect_snd.play()
+}
+lvl3soundplay(){
+  this.lvl3sound.play();
+  return null;
 }
 } //////////// end of class world ////////////////////////
