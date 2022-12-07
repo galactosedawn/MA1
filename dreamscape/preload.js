@@ -158,6 +158,7 @@ class preload extends Phaser.Scene {
     
         // Add any text in the main page
         this.add.sprite(400,320,"mainpage").play("titlescene")
-    
+        this.add.text(50, 50, 'Hoo Xi Lei', { font: '18px Courier', fill: '#ffffff' });
+        this.add.text(50, 75, 'CNMT 002F7921', { font: '18px Courier', fill: '#ffffff' });
     }
 }
